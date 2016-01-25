@@ -84,6 +84,62 @@ int main() {
   fprintf(stdout, "Time test 3: %f s.\n", time_test);
   fprintf(stdout, "ss = %f\n", ss);
 
+  // In a further optimization, we disentangle the addition and multiplication
+  // part of each instruction. The hope is that while the accumulation is
+  // waiting for the result of the multiplication, the intervening instructions
+  // will keep the processor busy, in effect increasing the number of operations
+  // per second.
+
+  aa = aa_free;
+  bb = bb_free;
+  ss = 0.0;
+  sum1 = 0.0;
+  sum2 = 0.0;
+  double temp1 = 0.0;
+  double temp2 = 0.0;
+
+  begin_time = clock();
+  for (ii = 0; ii < nn/2 - 1; ++ii) {
+    temp1 = (*(aa + 0))*(*(bb + 0));
+    temp2 = (*(aa + 1))*(*(bb + 1));
+    sum1 += temp1;
+    sum2 += temp2;
+    aa += 2;
+    bb += 2;
+  }
+  ss = sum1 + sum2;
+  time_test = ((double) clock() - begin_time)/CLOCKS_PER_SEC;
+
+  fprintf(stdout, "Time test 4: %f s.\n", time_test);
+  fprintf(stdout, "ss = %f\n", ss);
+
+  // Finally, we realize that the furthest we can move the addition away from
+  // the multiplication, is to put it right in front of the multiplication of
+  // the next iteration.
+
+  aa = aa_free;
+  bb = bb_free;
+  ss = 0.0;
+  sum1 = 0.0;
+  sum2 = 0.0;
+  temp1 = 0.0;
+  temp2 = 0.0;
+
+  begin_time = clock();
+  for (ii = 0; ii < nn/2 - 1; ++ii) {
+    sum1 += temp1;
+    temp1 = (*(aa + 0))*(*(bb + 0));
+    sum2 += temp2;
+    temp2 = (*(aa + 1))*(*(bb + 1));
+    aa += 2;
+    bb += 2;
+  }
+  ss = sum1 + sum2;
+  time_test = ((double) clock() - begin_time)/CLOCKS_PER_SEC;
+
+  fprintf(stdout, "Time test 5: %f s.\n", time_test);
+  fprintf(stdout, "ss = %f\n", ss);
+
   free(aa_free);
   free(bb_free);
 
