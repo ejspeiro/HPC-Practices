@@ -1,11 +1,67 @@
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ gcc pipelining.c -o
+pipelining
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ ./pipelining
 Memory arrays: 6400000000 B.
-Time test 1: 1.383647 s.
+Time test 1: 1.100097 s.
 ss = 400000000.000000
-Time test 2: 0.956825 s.
+Time test 2: 0.776488 s.
 ss = 399999998.000000
-Time test 3: 0.793270 s.
+Time test 3: 0.649981 s.
 ss = 399999998.000000
-Time test 4: 1.005197 s.
+Time test 4: 0.817470 s.
 ss = 399999998.000000
-Time test 5: 0.987779 s.
+Time test 5: 0.804011 s.
 ss = 399999996.000000
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ gcc -O0 pipelining.c -o pipelining
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ ./pipelining
+Memory arrays: 6400000000 B.
+Time test 1: 1.101373 s.
+ss = 400000000.000000
+Time test 2: 0.778854 s.
+ss = 399999998.000000
+Time test 3: 0.676302 s.
+ss = 399999998.000000
+Time test 4: 0.826308 s.
+ss = 399999998.000000
+Time test 5: 0.814643 s.
+ss = 399999996.000000
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ gcc -O1 pipelining.c -o pipelining
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ ./pipelining
+Memory arrays: 6400000000 B.
+Time test 1: 1.084864 s.
+ss = 400000000.000000
+Time test 2: 0.399761 s.
+ss = 399999998.000000
+Time test 3: 0.395958 s.
+ss = 399999998.000000
+Time test 4: 0.403691 s.
+ss = 399999998.000000
+Time test 5: 0.409877 s.
+ss = 399999996.000000
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ gcc -O2 pipelining.c -o pipelining
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ ./pipelining
+Memory arrays: 6400000000 B.
+Time test 1: 0.421289 s.
+ss = 400000000.000000
+Time test 2: 0.399005 s.
+ss = 399999998.000000
+Time test 3: 0.401114 s.
+ss = 399999998.000000
+Time test 4: 0.404740 s.
+ss = 399999998.000000
+Time test 5: 0.396253 s.
+ss = 399999996.000000
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ gcc -O3 pipelining.c -o pipelining
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$ ./pipelining
+Memory arrays: 6400000000 B.
+Time test 1: 0.413688 s.
+ss = 400000000.000000
+Time test 2: 0.403945 s.
+ss = 399999998.000000
+Time test 3: 0.398978 s.
+ss = 399999998.000000
+Time test 4: 0.403415 s.
+ss = 399999998.000000
+Time test 5: 0.397090 s.
+ss = 399999996.000000
+ejspeiro@Eduardo-Alienware-14:~/Dropbox/HPC-Practices$
