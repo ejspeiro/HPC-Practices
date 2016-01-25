@@ -9,8 +9,5 @@ pipelining: pipelining.o pipelining.c
 pipelining.o: pipelining.c
 	gcc -c pipelining.c
 
-run_pipelining:
-	./pipelining >& pipelining_results.txt
-
 clean:
 	rm -f *~ *.s *.o pipelining
